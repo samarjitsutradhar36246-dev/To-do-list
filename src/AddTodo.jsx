@@ -1,32 +1,29 @@
 import "./add.css";
 import { IoMdAddCircle } from "react-icons/io";
-import { useState } from "react";
+import { useState, useRef } from "react";
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState();
-  const [duedate, setduedate] = useState();
-  const handleNamechange = (event) => {
-    setTodoName(event.target.value);
-  };
-  const handledatechange = (event) => {
-    setduedate(event.target.value);
-  };
+  const todoNameElement = useRef();
+  const duedateElement = useRef();
+
   const handleAddbutton = () => {
+    const todoName = todoNameElement.current.value;
+    const duedate = duedateElement.current.value;
+
+    todoNameElement.current.value = "";
+    duedateElement.current.value = "";
     onNewItem(todoName, duedate);
-    setTodoName("");
-    setduedate("");
   };
   return (
     <div className="row">
       <div className="col">
         <input
           type="text"
+          ref={todoNameElement}
           placeholder="Enter Items"
-          onChange={handleNamechange}
-          value={todoName}
         ></input>
       </div>
       <div className="col-md-auto">
-        <input type="date" onChange={handledatechange} value={duedate} />
+        <input type="date" ref={duedateElement} />
       </div>
       <div className="col col-lg-2">
         <button
