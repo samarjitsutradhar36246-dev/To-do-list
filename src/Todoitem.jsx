@@ -1,11 +1,17 @@
-function TodoItem({ todoname, tododate }) {
+import { AiFillDelete } from "react-icons/ai";
+import "./buttons.css";
+function TodoItem({ todoname, tododate, ondeleteclick }) {
   return (
-    <div class="row">
-      <div class="col">{todoname}</div>
-      <div class="col-md-auto">{tododate}</div>
-      <div class="col col-lg-2">
-        <button type="button" class="btn btn-danger">
-          Delete
+    <div className="row">
+      <div className="col">{todoname}</div>
+      <div className="col-md-auto">{tododate}</div>
+      <div className="col col-lg-2">
+        <button
+          type="button"
+          className="btn btn-danger buttons"
+          onClick={() => ondeleteclick(todoname)}
+        >
+          <AiFillDelete />
         </button>
       </div>
     </div>
